@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                
+            
                 Section("Personal") {
                     if expenses.items.isEmpty {
                         ContentUnavailableView("No Personal Expenses", systemImage: "folder.badge.plus", description: Text("Tap the top right corner of the screen to add an Expense"))
@@ -22,14 +22,17 @@ struct ContentView: View {
                     } else {
                         ForEach(expenses.items, id: \.id) { item in
                             if item.type == "Personal" {
-                                HStack {
-                                    Text(item.name)
-                                        .font(.system(size: 22, weight: .bold, design: .serif))
-                                    
-                                    Spacer()
-                                    
-                                    Text("\(item.value, format: .currency(code: "EUR"))")
-                                        .font(.system(size: 18, weight: .semibold, design: .serif))
+                                NavigationLink(value: item) {
+                                    HStack {
+                                        Text(item.name)
+                                            .font(.system(size: 22, weight: .bold, design: .serif))
+                                        
+                                        Spacer()
+                                        
+                                        Text("\(item.value, format: .currency(code: "EUR"))")
+                                            .font(.system(size: 18, weight: .semibold, design: .serif))
+                                            .foregroundStyle(item.value >= 200 ? .red : item.value >= 100 ? .orange : item.value >= 50 ? .green : .black)
+                                    }
                                 }
                             }
                         }
@@ -44,14 +47,17 @@ struct ContentView: View {
                     } else {
                         ForEach(expenses.items, id: \.id) { item in
                             if item.type == "Business" {
-                                HStack {
-                                    Text(item.name)
-                                        .font(.system(size: 22, weight: .bold, design: .serif))
-                                    
-                                    Spacer()
-                                    
-                                    Text("\(item.value, format: .currency(code: "EUR"))")
-                                        .font(.system(size: 18, weight: .semibold, design: .serif))
+                                NavigationLink(value: item) {
+                                    HStack {
+                                        Text(item.name)
+                                            .font(.system(size: 22, weight: .bold, design: .serif))
+                                        
+                                        Spacer()
+                                        
+                                        Text("\(item.value, format: .currency(code: "EUR"))")
+                                            .font(.system(size: 18, weight: .semibold, design: .serif))
+                                            .foregroundStyle(item.value >= 200 ? .red : item.value >= 100 ? .orange : item.value >= 50 ? .green : .black)
+                                    }
                                 }
                             }
                         }
@@ -67,6 +73,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showingAddExpense) {
                 AddView(expenses: expenses)
+            }
+            .navigationDestination(for: ExpenseItem.self) { expense in
+                DetailView(expenses: expense)
             }
         }
     }
