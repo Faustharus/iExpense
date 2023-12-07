@@ -67,8 +67,13 @@ struct ContentView: View {
             }
             .navigationTitle("iExpense")
             .toolbar {
-                Button("Add Expense", systemImage: "plus") {
-                    showingAddExpense = true
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Add Expense", systemImage: "plus") {
+                        showingAddExpense = true
+                    }
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
