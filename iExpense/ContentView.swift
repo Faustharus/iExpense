@@ -71,17 +71,22 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add Expense", systemImage: "plus") {
-                        showingAddExpense = true
+                    NavigationLink {
+                        AddView(expenses: expenses)
+                    } label: {
+                        Image(systemName: "plus")
                     }
+//                    Button("Add Expense", systemImage: "plus") {
+//                        showingAddExpense = true
+//                    }
                 }
-            }
-            .sheet(isPresented: $showingAddExpense) {
-                AddView(expenses: expenses)
             }
             .navigationDestination(for: ExpenseItem.self) { expense in
                 DetailView(expenses: expense)
             }
+//            .sheet(isPresented: $showingAddExpense) {
+//                AddView(expenses: expenses)
+//            }
         }
     }
 }

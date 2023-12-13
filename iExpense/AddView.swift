@@ -34,6 +34,10 @@ struct AddView: View {
                 
                 TextField("Amount", value: $amount, format: .currency(code: "EUR"))
                 
+                Button("Close") {
+                    dismiss()
+                }
+                
             }
             .navigationTitle("Add New Expense")
             .navigationBarTitleDisplayMode(.inline)
@@ -47,6 +51,7 @@ struct AddView: View {
                 }
                 .disabled(name.isEmpty || amount.isZero)
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
