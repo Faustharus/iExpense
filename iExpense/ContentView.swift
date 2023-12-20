@@ -5,88 +5,50 @@
 //  Created by Damien Chailloleau on 01/12/2023.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    @State private var expenses = Expenses()
+    @Environment(\.modelContext) var modelContext
+    @State private var path = [Expenses]()
+    @Query var expenses: [Expenses]
     @State private var showingAddExpense: Bool = false
     
     var body: some View {
         NavigationStack {
             List {
-            
-                Section("Personal") {
-                    if expenses.items.isEmpty {
-                        ContentUnavailableView("No Personal Expenses", systemImage: "folder.badge.plus", description: Text("Tap the top right corner of the screen to add an Expense"))
-                            .symbolVariant(.fill)
-                    } else {
-                        ForEach(expenses.items, id: \.id) { item in
-                            if item.type == "Personal" {
-                                NavigationLink(value: item) {
-                                    HStack {
-                                        Text(item.name)
-                                            .font(.system(size: 22, weight: .bold, design: .serif))
-                                        
-                                        Spacer()
-                                        
-                                        Text("\(item.value, format: .currency(code: "EUR"))")
-                                            .font(.system(size: 18, weight: .semibold, design: .serif))
-                                            .foregroundStyle(item.value >= 200 ? .red : item.value >= 100 ? .orange : item.value >= 50 ? .green : .black)
-                                    }
-                                }
-                            }
+                ForEach(expenses) { item in
+                    NavigationLink(value: item) {
+                        HStack {
+                            Text(item.name)
+                                .font(.system(size: 22, weight: .bold, design: .serif))
+                            
+                            Spacer()
+                            
+                            Text("\(item.amount, format: .currency(code: "EUR"))")
+                                .font(.system(size: 18, weight: .semibold, design: .serif))
+                                .foregroundStyle(item.amount >= 200 ? .red : item.amount >= 100 ? .orange : item.amount >= 50 ? .green : .black)
                         }
-                        .onDelete(perform: removeItems)
                     }
                 }
-                
-                Section("Business") {
-                    if expenses.items.isEmpty {
-                        ContentUnavailableView("No Business Expenses", systemImage: "folder.badge.plus", description: Text("Tap the top right corner of the screen to add an Expense"))
-                            .symbolVariant(.fill)
-                    } else {
-                        ForEach(expenses.items, id: \.id) { item in
-                            if item.type == "Business" {
-                                NavigationLink(value: item) {
-                                    HStack {
-                                        Text(item.name)
-                                            .font(.system(size: 22, weight: .bold, design: .serif))
-                                        
-                                        Spacer()
-                                        
-                                        Text("\(item.value, format: .currency(code: "EUR"))")
-                                            .font(.system(size: 18, weight: .semibold, design: .serif))
-                                            .foregroundStyle(item.value >= 200 ? .red : item.value >= 100 ? .orange : item.value >= 50 ? .green : .black)
-                                    }
-                                }
-                            }
-                        }
-                        .onDelete(perform: removeItems)
-                    }
-                }
+                .onDelete(perform: removeItems)
             }
             .navigationTitle("iExpense")
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    EditButton()
-                }
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        AddView(expenses: expenses)
+                    Button {
+                        showingAddExpense = true
                     } label: {
-                        Image(systemName: "plus")
+                        Label("Add", systemImage: "plus")
                     }
-//                    Button("Add Expense", systemImage: "plus") {
-//                        showingAddExpense = true
-//                    }
                 }
             }
-            .navigationDestination(for: ExpenseItem.self) { expense in
-                DetailView(expenses: expense)
+            .sheet(isPresented: $showingAddExpense) {
+                AddView()
             }
-//            .sheet(isPresented: $showingAddExpense) {
-//                AddView(expenses: expenses)
-//            }
+            .navigationDestination(for: Expenses.self) { expense in
+                DetailView(expense: expense)
+            }
         }
     }
 }
@@ -98,7 +60,10 @@ struct ContentView: View {
 extension ContentView {
     
     func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+        for offset in offsets {
+            let expense = expenses[offset]
+            modelContext.delete(expense)
+        }
     }
     
 }

@@ -5,6 +5,7 @@
 //  Created by Damien Chailloleau on 02/12/2023.
 //
 
+import SwiftData
 import SwiftUI
 
 enum Types: String, CaseIterable {
@@ -12,13 +13,12 @@ enum Types: String, CaseIterable {
 }
 
 struct AddView: View {
+    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
     @State private var name: String = ""
     @State private var type: Types = .Personal
-    @State private var amount: Double = 0.0
-    
-    let expenses: Expenses
+    @State private var amount: Decimal = 0.0
     
     var body: some View {
         NavigationStack {
@@ -43,8 +43,8 @@ struct AddView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
-                    let expense = ExpenseItem(name: name, type: type.rawValue, value: amount)
-                    expenses.items.append(expense)
+                    let newExpense = Expenses(name: name, type: type.rawValue, amount: amount)
+                    modelContext.insert(newExpense)
                     dismiss()
                 } label: {
                     Label("Save", systemImage: "square.and.arrow.down")
@@ -57,5 +57,5 @@ struct AddView: View {
 }
 
 #Preview {
-    AddView(expenses: Expenses())
+    AddView()
 }
