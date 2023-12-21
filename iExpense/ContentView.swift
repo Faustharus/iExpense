@@ -10,36 +10,73 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
-    @State private var path = [Expenses]()
     @Query var expenses: [Expenses]
+    
+    @State private var path = [Expenses]()
+    @State private var sortOrder = [
+        SortDescriptor(\Expenses.name),
+        SortDescriptor(\Expenses.amount)
+    ]
     @State private var showingAddExpense: Bool = false
+    @State private var showingAll: Bool = true
+    @State private var showingCategory: Bool = false
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
-                ForEach(expenses) { item in
-                    NavigationLink(value: item) {
-                        HStack {
-                            Text(item.name)
-                                .font(.system(size: 22, weight: .bold, design: .serif))
-                            
-                            Spacer()
-                            
-                            Text("\(item.amount, format: .currency(code: "EUR"))")
-                                .font(.system(size: 18, weight: .semibold, design: .serif))
-                                .foregroundStyle(item.amount >= 200 ? .red : item.amount >= 100 ? .orange : item.amount >= 50 ? .green : .black)
-                        }
+                if showingAll {
+                    Section("All") {
+                        ExpenseView(expenseCategory: "Personal", sortOrder: sortOrder)
+                        ExpenseView(expenseCategory: "Business", sortOrder: sortOrder)
+                    }
+                } else {
+                    Section(showingCategory ? "Personal" : "Business") {
+                        ExpenseView(expenseCategory: showingCategory ? "Personal" : "Business", sortOrder: sortOrder)
                     }
                 }
-                .onDelete(perform: removeItems)
             }
             .navigationTitle("iExpense")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu("Category", systemImage: "tray.full") {
+                        Button("All") {
+                            showingAll.toggle()
+                        }
+                        
+                        Button("Personal") {
+                            showingCategory = true
+                            showingAll = false
+                        }
+                        
+                        Button("Business") {
+                            showingCategory = false
+                            showingAll = false
+                        }
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showingAddExpense = true
-                    } label: {
-                        Label("Add", systemImage: "plus")
+                    HStack {
+                        Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                            Picker("", selection: $sortOrder) {
+                                Text("Sort by Name")
+                                    .tag([
+                                        SortDescriptor(\Expenses.name),
+                                        SortDescriptor(\Expenses.amount)
+                                    ])
+                                
+                                Text("Sort by Amount")
+                                    .tag([
+                                        SortDescriptor(\Expenses.amount),
+                                        SortDescriptor(\Expenses.name)
+                                    ])
+                            }
+                        }
+                        
+                        Button {
+                            showingAddExpense = true
+                        } label: {
+                            Label("Add", systemImage: "plus")
+                        }
                     }
                 }
             }
@@ -55,15 +92,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-}
-
-extension ContentView {
-    
-    func removeItems(at offsets: IndexSet) {
-        for offset in offsets {
-            let expense = expenses[offset]
-            modelContext.delete(expense)
-        }
-    }
-    
 }
