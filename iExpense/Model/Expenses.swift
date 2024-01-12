@@ -9,14 +9,19 @@ import SwiftData
 import Foundation
 
 @Model
-class Expenses {
+final class Expenses {
     var name: String
     var type: String
+    var currency: String
     var amount: Decimal
     
-    init(name: String, type: String, amount: Decimal) {
+    @Attribute(.externalStorage)
+    var image: Data?
+    
+    init(name: String, type: String, currency: String, amount: Decimal) {
         self.name = name
         self.type = type
+        self.currency = currency
         self.amount = amount
     }
 }

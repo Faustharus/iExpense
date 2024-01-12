@@ -5,6 +5,7 @@
 //  Created by Damien Chailloleau on 02/12/2023.
 //
 
+import PhotosUI
 import SwiftData
 import SwiftUI
 
@@ -17,8 +18,14 @@ struct AddView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var name: String = ""
+    @State private var currencyName: String = "EUR"
     @State private var type: Types = .Personal
     @State private var amount: Decimal = 0.0
+    
+    @State private var pickerItem: PhotosPickerItem?
+    @State private var selectedImage: Image?
+    
+    let currencies = ["EUR", "USD", "CAD", "AUD", "JPY", "CNY", "GBP", "BRL", "ZAF", "AED", "INR", "KRW"]
     
     var body: some View {
         NavigationStack {
@@ -32,7 +39,22 @@ struct AddView: View {
                     }
                 }
                 
-                TextField("Amount", value: $amount, format: .currency(code: "EUR"))
+                Picker("Currency", selection: $currencyName) {
+                    ForEach(currencies, id: \.self) { item in
+                        Text("\(item)")
+                    }
+                }
+                .pickerStyle(.wheel)
+                
+                TextField("Amount", value: $amount, format: .currency(code: "\(currencyName)"))
+                
+                PhotosPicker("Select a picture", selection: $pickerItem, matching: .images)
+                
+                Section {
+                    selectedImage?
+                        .resizable()
+                        .scaledToFit()
+                }
                 
                 Button("Close") {
                     dismiss()
@@ -41,13 +63,18 @@ struct AddView: View {
             }
             .navigationTitle("Add New Expense")
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: pickerItem) {
+                Task {
+                    selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
+                }
+            }
             .toolbar {
                 Button {
-                    let newExpense = Expenses(name: name, type: type.rawValue, amount: amount)
+                    let newExpense = Expenses(name: name, type: type.rawValue, currency: currencyName, amount: amount)
                     modelContext.insert(newExpense)
                     dismiss()
                 } label: {
-                    Label("Save", systemImage: "square.and.arrow.down")
+                    Label("Save", systemImage: "")
                 }
                 .disabled(name.isEmpty || amount.isZero)
             }

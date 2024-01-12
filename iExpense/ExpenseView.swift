@@ -27,7 +27,7 @@ struct ExpenseView: View {
                     
                     Spacer()
                     
-                    Text("\(item.amount, format: .currency(code: "EUR"))")
+                    Text("\(item.amount, format: .currency(code: "\(item.currency)"))")
                         .font(.system(size: 18, weight: .semibold, design: .serif))
                         .foregroundStyle(item.amount >= 200 ? .red : item.amount >= 100 ? .orange : item.amount >= 50 ? .green : .black)
                 }

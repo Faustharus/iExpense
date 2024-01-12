@@ -1,0 +1,164 @@
+[
+    {
+        "continent": "Europe",
+        "countries": [
+            {
+                "acronym": "EUR",
+                "name": "Euro"
+            },
+            {
+                "acronym": "GBP",
+                "name": "Great Britain Pound"
+            },
+            {
+                "acronym": "CHF",
+                "name": "Swiss Franc"
+            },
+            {
+                "acronym": "CZK",
+                "name": "Czech Koruna"
+            },
+            {
+                "acronym": "ISK",
+                "name": "Icelandic Krona"
+            },
+            {
+                "acronym": "SEK",
+                "name": "Swedish Krona"
+            },
+            {
+                "acronym": "DKK",
+                "name": "Danish Krone"
+            },
+            {
+                "acronym": "NOK",
+                "name": "Norgewian Krone"
+            }
+        ]
+    },
+    {
+        "continent": "Asia",
+        "countries": [
+            {
+                "acronym": "JPY",
+                "name": "Japanese Yen"
+            },
+            {
+                "acronym": "CNY",
+                "name": "Chinese Yuan Renmibi"
+            },
+            {
+                "acronym": "KRW",
+                "name": "South Korea Won"
+            },
+            {
+                "acronym": "INR",
+                "name": "Indian Rupee"
+            },
+            {
+                "acronym": "AED",
+                "name": "United Arab Emirate Dihram"
+            },
+            {
+                "acronym": "THB",
+                "name": "Thai Baht"
+            },
+            {
+                "acronym": "MYR",
+                "name": "Malaysian Ringgit"
+            },
+            {
+                "acronym": "MNT",
+                "name": "Mongolian Tögrög"
+            },
+            {
+                "acronym": "SGD",
+                "name": "Singapore Dollar"
+            }
+        ]
+    },
+    {
+        "continent": "Oceania",
+        "countries": [
+            {
+                "acronym": "AUD",
+                "name": "Australian Dollar"
+            },
+            {
+                "acronym": "NZD",
+                "name": "New Zealand Dollar"
+            },
+            {
+                "acronym": "FJD",
+                "name": "Fijian Dollar"
+            },
+            {
+                "acronym": "PGK",
+                "name": "Papua New Guinea"
+            }
+        ]
+    },
+    {
+        "continent": "Africa",
+        "countries": [
+            {
+                "acronym": "ZAR",
+                "name": "Algerian Dinar"
+            },
+            {
+                "acronym": "DZD",
+                "name": "Moroccan Dirham"
+            },
+            {
+                "acronym": "MAD",
+                "name": "Tunisian Dinar"
+            },
+            {
+                "acronym": "EGP",
+                "name": "Egyptian Pound"
+            },
+            {
+                "acronym": "TND",
+                "name": "South African Rand"
+            },
+            {
+                "acronym": "XAF",
+                "name": "Central African Franc"
+            }
+        ]
+    },
+    {
+        "continent": "America",
+        "countries": [
+            {
+                "acronym": "USD",
+                "name": "US Dollar"
+            },
+            {
+                "acronym": "CAD",
+                "name": "Canadian Dollar"
+            },
+            {
+                "acronym": "MXN",
+                "name": "Mexican Peso"
+            },
+            {
+                "acronym": "BRL",
+                "name": "Brazilian Real"
+            },
+            {
+                "acronym": "COP",
+                "name": "Colombian Peso"
+            },
+            {
+                "acronym": "CRC",
+                "name": "Costa Rican Colón"
+            },
+            {
+                "acronym": "CLP",
+                "name": "Chilean Peso"
+            }
+        ]
+    }
+]
+

@@ -40,7 +40,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Menu("Category", systemImage: "tray.full") {
                         Button("All") {
-                            showingAll.toggle()
+                            showingAll = true
                         }
                         
                         Button("Personal") {
@@ -92,4 +92,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(for: Expenses.self)
 }
