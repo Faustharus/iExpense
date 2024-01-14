@@ -6,7 +6,7 @@
 //
 
 import SwiftData
-import Foundation
+import SwiftUI
 
 @Model
 final class Expenses {
@@ -18,10 +18,11 @@ final class Expenses {
     @Attribute(.externalStorage)
     var image: Data?
     
-    init(name: String, type: String, currency: String, amount: Decimal) {
+    init(name: String = "", type: String = "", currency: String = "", amount: Decimal = 0.00, image: Data? = nil) {
         self.name = name
         self.type = type
         self.currency = currency
         self.amount = amount
+        self.image = image
     }
 }

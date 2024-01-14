@@ -34,7 +34,7 @@ struct DetailView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Expenses.self, configurations: config)
-        let dummyExpense = Expenses(name: "Groceries", type: "Personal", currency: "EUR", amount: 15.87)
+        let dummyExpense = Expenses(name: "Groceries", type: "Personal", currency: "EUR", amount: 15.87, image: nil)
         
         return DetailView(expense: dummyExpense)
             .modelContainer(container)

@@ -25,30 +25,41 @@ struct AddView: View {
     @State private var pickerItem: PhotosPickerItem?
     @State private var selectedImage: Image?
     
+    @Bindable var expenses: Expenses
+    
     let currencies = ["EUR", "USD", "CAD", "AUD", "JPY", "CNY", "GBP", "BRL", "ZAF", "AED", "INR", "KRW"]
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $name)
+                TextField("Name", text: $expenses.name)
                     .keyboardType(.default)
                 
-                Picker("Type", selection: $type) {
+                Picker("Type", selection: $expenses.type) {
                     ForEach(Types.allCases, id: \.self) { item in
                         Text(item.rawValue)
                     }
                 }
                 
-                Picker("Currency", selection: $currencyName) {
+                Picker("Currency", selection: $expenses.currency) {
                     ForEach(currencies, id: \.self) { item in
                         Text("\(item)")
                     }
                 }
                 .pickerStyle(.wheel)
                 
-                TextField("Amount", value: $amount, format: .currency(code: "\(currencyName)"))
+                TextField("Amount", value: $expenses.amount, format: .currency(code: "\(expenses.currency)"))
                 
                 PhotosPicker("Select a picture", selection: $pickerItem, matching: .images)
+                
+                Button(role: .destructive) {
+                    selectedImage = nil
+                    pickerItem = nil
+                } label: {
+                    Text("Remove Photo")
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(selectedImage == nil || pickerItem == nil)
                 
                 Section {
                     selectedImage?
@@ -63,14 +74,14 @@ struct AddView: View {
             }
             .navigationTitle("Add New Expense")
             .navigationBarTitleDisplayMode(.inline)
-            .onChange(of: pickerItem) {
-                Task {
-                    selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
-                }
-            }
+//            .onChange(of: pickerItem) {
+//                Task {
+//                    selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
+//                }
+//            }
             .toolbar {
                 Button {
-                    let newExpense = Expenses(name: name, type: type.rawValue, currency: currencyName, amount: amount)
+                    let newExpense = Expenses(name: expenses.name, type: expenses.type, currency: expenses.currency, amount: expenses.amount, image: expenses.image)
                     modelContext.insert(newExpense)
                     dismiss()
                 } label: {
@@ -79,10 +90,24 @@ struct AddView: View {
                 .disabled(name.isEmpty || amount.isZero)
             }
             .navigationBarBackButtonHidden(true)
+            .task(id: selectedImage) {
+                if let data = try? await pickerItem?.loadTransferable(type: Data.self) {
+                    expenses.image = data
+                }
+            }
         }
     }
 }
 
 #Preview {
-    AddView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Expenses.self, configurations: config)
+        let dummyExpense = Expenses()
+        return AddView(expenses: dummyExpense)
+    } catch {
+        return Text("Failed to return the preview: \(error.localizedDescription)")
+    }
+    
+//    AddView(expenses: Expenses(name: "", type: "", currency: "", amount: 0.00, image: nil))
 }
