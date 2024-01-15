@@ -17,7 +17,15 @@ struct DetailView: View {
     var body: some View {
         VStack {
             Text("Category: \(expense.type)")
-            Text("Amount: \(expense.amount, format: .currency(code: "EUR"))")
+            Text("Amount: \(expense.amount, format: .currency(code: "\(expense.type)"))")
+            
+            if let selectedImage = expense.image ?? nil,
+               let uiImage = UIImage(data: selectedImage) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity, maxHeight: 300)
+            }
             
             Button("Delete this Expense", role: .destructive) {
                 modelContext.delete(expense)
@@ -26,7 +34,6 @@ struct DetailView: View {
         }
         .navigationTitle(expense.name)
         .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 

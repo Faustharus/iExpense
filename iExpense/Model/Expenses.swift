@@ -18,7 +18,7 @@ final class Expenses {
     @Attribute(.externalStorage)
     var image: Data?
     
-    init(name: String = "", type: String = "", currency: String = "", amount: Decimal = 0.00, image: Data? = nil) {
+    init(name: String = "", type: String = "", currency: String = "", amount: Decimal = 0.0, image: Data? = nil) {
         self.name = name
         self.type = type
         self.currency = currency

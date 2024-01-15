@@ -21,8 +21,6 @@ struct ContentView: View {
     @State private var showingAll: Bool = true
     @State private var showingCategory: Bool = false
     
-    @State private var expense = Expenses()
-    
     var body: some View {
         NavigationStack(path: $path) {
             List {
@@ -83,7 +81,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
-                AddView(expenses: expense)
+                AddView()
             }
             .navigationDestination(for: Expenses.self) { expense in
                 DetailView(expense: expense)
@@ -94,5 +92,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Expenses.self)
 }
