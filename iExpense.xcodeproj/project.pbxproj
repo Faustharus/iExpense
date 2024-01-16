@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E418B512B56D10D00C069E9 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E418B502B56D10D00C069E9 /* StatisticsView.swift */; };
+		9E418B532B56D40100C069E9 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E418B522B56D40100C069E9 /* StatisticsViewModel.swift */; };
 		9E4BC6DB2B1B81B200E73A0C /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BC6DA2B1B81B200E73A0C /* AddView.swift */; };
 		9E4BC6E12B1B967100E73A0C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BC6E02B1B967100E73A0C /* DetailView.swift */; };
 		9E631AA22B32FDE800A9A49A /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631AA12B32FDE800A9A49A /* Expenses.swift */; };
@@ -18,9 +20,15 @@
 		9EF8DB712B5040CB0055EB7E /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 9EF8DB702B5040CB0055EB7E /* currencies.json */; };
 		9EF8DB742B5041020055EB7E /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF8DB732B5041020055EB7E /* Bundle-Decodable.swift */; };
 		9EF8DB762B5041A20055EB7E /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF8DB752B5041A20055EB7E /* Currencies.swift */; };
+		9EFB96992B559C5B008659E2 /* RateAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB96982B559C5B008659E2 /* RateAPIKey.swift */; };
+		9EFB969C2B559C77008659E2 /* RateAPIURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB969B2B559C77008659E2 /* RateAPIURLConstant.swift */; };
+		9EFB969E2B559C9B008659E2 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB969D2B559C9B008659E2 /* APIResponse.swift */; };
+		9EFB96A02B559D22008659E2 /* ExchangeRateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFB969F2B559D22008659E2 /* ExchangeRateAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E418B502B56D10D00C069E9 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		9E418B522B56D40100C069E9 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		9E4BC6DA2B1B81B200E73A0C /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		9E4BC6E02B1B967100E73A0C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		9E631AA12B32FDE800A9A49A /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
@@ -33,6 +41,10 @@
 		9EF8DB702B5040CB0055EB7E /* currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
 		9EF8DB732B5041020055EB7E /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		9EF8DB752B5041A20055EB7E /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
+		9EFB96982B559C5B008659E2 /* RateAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAPIKey.swift; sourceTree = "<group>"; };
+		9EFB969B2B559C77008659E2 /* RateAPIURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAPIURLConstant.swift; sourceTree = "<group>"; };
+		9EFB969D2B559C9B008659E2 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		9EFB969F2B559D22008659E2 /* ExchangeRateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,9 +58,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E418B542B56D43100C069E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E418B522B56D40100C069E9 /* StatisticsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9E631AA32B32FDED00A9A49A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9EFB969D2B559C9B008659E2 /* APIResponse.swift */,
 				9E631AA12B32FDE800A9A49A /* Expenses.swift */,
 				9EF8DB752B5041A20055EB7E /* Currencies.swift */,
 			);
@@ -79,6 +100,10 @@
 				9E80EAFC2B33534000091054 /* ExpenseView.swift */,
 				9E4BC6E02B1B967100E73A0C /* DetailView.swift */,
 				9E4BC6DA2B1B81B200E73A0C /* AddView.swift */,
+				9E418B502B56D10D00C069E9 /* StatisticsView.swift */,
+				9E418B542B56D43100C069E9 /* ViewModel */,
+				9EFB96A12B55A9A4008659E2 /* Shared */,
+				9EFB969A2B559C60008659E2 /* Utilities */,
 				9E631AA32B32FDED00A9A49A /* Model */,
 				9EF8DB722B5040E00055EB7E /* Extension */,
 				9EF8DB702B5040CB0055EB7E /* currencies.json */,
@@ -102,6 +127,23 @@
 				9EF8DB732B5041020055EB7E /* Bundle-Decodable.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		9EFB969A2B559C60008659E2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9EFB96982B559C5B008659E2 /* RateAPIKey.swift */,
+				9EFB969B2B559C77008659E2 /* RateAPIURLConstant.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9EFB96A12B55A9A4008659E2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9EFB969F2B559D22008659E2 /* ExchangeRateAPI.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,11 +217,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFB969C2B559C77008659E2 /* RateAPIURLConstant.swift in Sources */,
 				9E631AA22B32FDE800A9A49A /* Expenses.swift in Sources */,
 				9E4BC6E12B1B967100E73A0C /* DetailView.swift in Sources */,
+				9E418B532B56D40100C069E9 /* StatisticsViewModel.swift in Sources */,
+				9E418B512B56D10D00C069E9 /* StatisticsView.swift in Sources */,
 				9EC472152B1A372A00A89C11 /* ContentView.swift in Sources */,
 				9EC472132B1A372A00A89C11 /* iExpenseApp.swift in Sources */,
+				9EFB96A02B559D22008659E2 /* ExchangeRateAPI.swift in Sources */,
+				9EFB969E2B559C9B008659E2 /* APIResponse.swift in Sources */,
 				9E4BC6DB2B1B81B200E73A0C /* AddView.swift in Sources */,
+				9EFB96992B559C5B008659E2 /* RateAPIKey.swift in Sources */,
 				9EF8DB742B5041020055EB7E /* Bundle-Decodable.swift in Sources */,
 				9EF8DB762B5041A20055EB7E /* Currencies.swift in Sources */,
 				9E80EAFD2B33534000091054 /* ExpenseView.swift in Sources */,
@@ -319,7 +367,6 @@
 				DEVELOPMENT_TEAM = 3D4DRXPTLN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "iExpense need to use the camera to take pictures of your justifications";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -352,7 +399,6 @@
 				DEVELOPMENT_TEAM = 3D4DRXPTLN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "iExpense need to use the camera to take pictures of your justifications";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -14,15 +14,17 @@ final class Expenses {
     var type: String
     var currency: String
     var amount: Decimal
+    var summaryText: String?
     
     @Attribute(.externalStorage)
     var image: Data?
     
-    init(name: String = "", type: String = "", currency: String = "", amount: Decimal = 0.0, image: Data? = nil) {
+    init(name: String = "", type: String = "", currency: String = "", amount: Decimal = 0.0, summaryText: String? = nil, image: Data? = nil) {
         self.name = name
         self.type = type
         self.currency = currency
         self.amount = amount
+        self.summaryText = summaryText
         self.image = image
     }
 }

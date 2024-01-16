@@ -27,6 +27,11 @@ struct DetailView: View {
                     .frame(maxWidth: .infinity, maxHeight: 300)
             }
             
+            if expense.summaryText != nil {
+                Text("Summary:")
+                + Text("\(expense.summaryText ?? "")")
+            }
+            
             Button("Delete this Expense", role: .destructive) {
                 modelContext.delete(expense)
             }
@@ -41,7 +46,7 @@ struct DetailView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Expenses.self, configurations: config)
-        let dummyExpense = Expenses(name: "Groceries", type: "Personal", currency: "EUR", amount: 15.87, image: nil)
+        let dummyExpense = Expenses(name: "Groceries", type: "Personal", currency: "EUR", amount: 15.87, summaryText: "", image: nil)
         
         return DetailView(expense: dummyExpense)
             .modelContainer(container)
