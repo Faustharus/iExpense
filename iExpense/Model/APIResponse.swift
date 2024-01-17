@@ -9,7 +9,7 @@ import Foundation
 
 struct APIResponse: Codable, Hashable {
     var success: Bool
-    var historical: Bool
+    var historical: Bool = true
     var base: String
     var date: String
     var rates: [String: Decimal]
