@@ -19,20 +19,22 @@ final class StatisticsViewModel: ObservableObject {
     
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
-        let startComponents =  calendar.dateComponents([.year, .month, .day], from: Date.distantPast)
+        let fromPreviousYear = calendar.date(byAdding: .year, value: -1, to: Date.now)
+        let startComponents =  calendar.dateComponents([.year, .month, .day], from: fromPreviousYear!)
         let endComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
         return calendar.date(from: startComponents)!
         ...
         calendar.date(from: endComponents)!
     }()
     
-    func loadExchangeRates() async {
+    func loadExchangeRates() async -> [String: Decimal] {
         do {
             exchanges = try await ratesAPI.fetch(adding: dateStringConverter, with: selection)
             print("\(exchanges.keys): \(exchanges.values)")
         } catch {
             print(error.localizedDescription)
         }
+        return exchanges
     }
     
     var dateStringConverter: String {
