@@ -12,8 +12,7 @@ import SwiftUI
 struct iExpenseApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .modelContainer(for: Expenses.self)
+            MainTabView()
         }
     }
 }

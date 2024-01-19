@@ -13,6 +13,9 @@
 		9E4BC6E12B1B967100E73A0C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4BC6E02B1B967100E73A0C /* DetailView.swift */; };
 		9E631AA22B32FDE800A9A49A /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631AA12B32FDE800A9A49A /* Expenses.swift */; };
 		9E80EAFD2B33534000091054 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80EAFC2B33534000091054 /* ExpenseView.swift */; };
+		9E8A27B52B5A73A100407EA7 /* ChartsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8A27B42B5A73A000407EA7 /* ChartsData.swift */; };
+		9E8A27B72B5A73DA00407EA7 /* Date-From.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8A27B62B5A73DA00407EA7 /* Date-From.swift */; };
+		9E8A27B92B5A775200407EA7 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8A27B82B5A775200407EA7 /* MainTabView.swift */; };
 		9EC472132B1A372A00A89C11 /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC472122B1A372A00A89C11 /* iExpenseApp.swift */; };
 		9EC472152B1A372A00A89C11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC472142B1A372A00A89C11 /* ContentView.swift */; };
 		9EC472172B1A372B00A89C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EC472162B1A372B00A89C11 /* Assets.xcassets */; };
@@ -33,6 +36,9 @@
 		9E4BC6E02B1B967100E73A0C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		9E631AA12B32FDE800A9A49A /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
 		9E80EAFC2B33534000091054 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
+		9E8A27B42B5A73A000407EA7 /* ChartsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsData.swift; sourceTree = "<group>"; };
+		9E8A27B62B5A73DA00407EA7 /* Date-From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-From.swift"; sourceTree = "<group>"; };
+		9E8A27B82B5A775200407EA7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9EB20AB92B5829D40012FF66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9EC4720F2B1A372A00A89C11 /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EC472122B1A372A00A89C11 /* iExpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iExpenseApp.swift; sourceTree = "<group>"; };
@@ -73,6 +79,7 @@
 				9EFB969D2B559C9B008659E2 /* APIResponse.swift */,
 				9E631AA12B32FDE800A9A49A /* Expenses.swift */,
 				9EF8DB752B5041A20055EB7E /* Currencies.swift */,
+				9E8A27B42B5A73A000407EA7 /* ChartsData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,6 +105,7 @@
 			children = (
 				9EB20AB92B5829D40012FF66 /* Info.plist */,
 				9EC472122B1A372A00A89C11 /* iExpenseApp.swift */,
+				9E8A27B82B5A775200407EA7 /* MainTabView.swift */,
 				9EC472142B1A372A00A89C11 /* ContentView.swift */,
 				9E80EAFC2B33534000091054 /* ExpenseView.swift */,
 				9E4BC6E02B1B967100E73A0C /* DetailView.swift */,
@@ -127,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				9EF8DB732B5041020055EB7E /* Bundle-Decodable.swift */,
+				9E8A27B62B5A73DA00407EA7 /* Date-From.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -224,9 +233,12 @@
 				9E4BC6E12B1B967100E73A0C /* DetailView.swift in Sources */,
 				9E418B532B56D40100C069E9 /* StatisticsViewModel.swift in Sources */,
 				9E418B512B56D10D00C069E9 /* StatisticsView.swift in Sources */,
+				9E8A27B52B5A73A100407EA7 /* ChartsData.swift in Sources */,
 				9EC472152B1A372A00A89C11 /* ContentView.swift in Sources */,
 				9EC472132B1A372A00A89C11 /* iExpenseApp.swift in Sources */,
 				9EFB96A02B559D22008659E2 /* ExchangeRateAPI.swift in Sources */,
+				9E8A27B92B5A775200407EA7 /* MainTabView.swift in Sources */,
+				9E8A27B72B5A73DA00407EA7 /* Date-From.swift in Sources */,
 				9EFB969E2B559C9B008659E2 /* APIResponse.swift in Sources */,
 				9E4BC6DB2B1B81B200E73A0C /* AddView.swift in Sources */,
 				9EFB96992B559C5B008659E2 /* RateAPIKey.swift in Sources */,
