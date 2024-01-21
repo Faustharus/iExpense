@@ -102,15 +102,15 @@
         "continent": "Africa",
         "countries": [
             {
-                "acronym": "ZAR",
+                "acronym": "DZD",
                 "name": "Algerian Dinar"
             },
             {
-                "acronym": "DZD",
+                "acronym": "MAD",
                 "name": "Moroccan Dirham"
             },
             {
-                "acronym": "MAD",
+                "acronym": "TND",
                 "name": "Tunisian Dinar"
             },
             {
@@ -118,7 +118,7 @@
                 "name": "Egyptian Pound"
             },
             {
-                "acronym": "TND",
+                "acronym": "ZAR",
                 "name": "South African Rand"
             },
             {
